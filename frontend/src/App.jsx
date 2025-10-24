@@ -6,6 +6,7 @@ import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
+import ReadLater from './pages/ReadLater';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             }
           >
             <Route index element={<Home />} />
+            <Route path="read-later" element={<ReadLater />} />
           </Route>
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

@@ -50,6 +50,8 @@ export const digestsAPI = {
     api.get(`/digests/?limit=${limit}&skip=${skip}`),
   getDigest: (id) => api.get(`/digests/${id}`),
   getLatestDigest: (edition) => api.get(`/digests/latest/${edition}`),
+  getTodaysDigest: () => api.get(`/digests/today`),
+  createDigest: (edition) => api.post(`/digests/create/${edition}`),
 };
 
 // Articles API
