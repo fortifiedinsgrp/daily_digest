@@ -22,13 +22,14 @@ app = FastAPI(
     description="A curated news digest application"
 )
 
-# Configure CORS
+# Configure CORS - temporarily allow all origins for debugging
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.BACKEND_CORS_ORIGINS,
+    allow_origins=["*"],  # Allow all origins temporarily
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["*"],
 )
 
 # Include routers
@@ -43,3 +44,8 @@ def root():
 @app.get("/health")
 def health_check():
     return {"status": "healthy"}
+
+@app.options("/{rest_of_path:path}")
+async def preflight_handler(rest_of_path: str):
+    """Handle preflight requests"""
+    return {"message": "OK"}
