@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { 
@@ -8,7 +9,6 @@ import {
   Bars3Icon,
   XMarkIcon
 } from '@heroicons/react/24/outline';
-import { useState } from 'react';
 
 function Layout({ children }) {
   const { user, logout } = useAuth();
