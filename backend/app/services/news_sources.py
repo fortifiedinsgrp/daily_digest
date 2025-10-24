@@ -64,6 +64,24 @@ NEWS_SOURCES = {
             "international": "https://www.eldiario.es/internacional/rss",
             "technology": "https://www.eldiario.es/tecnologia/rss",
         }
+    },
+    "Ars Technica": {
+        "name": "Ars Technica",
+        "base_url": "https://arstechnica.com",
+        "specialization": "In-depth tech news, Apple, AI",
+        "categories": {
+            "apple": "http://feeds.arstechnica.com/arstechnica/apple",
+            "ai": "https://arstechnica.com/ai/feed/",
+            "tech-policy": "http://feeds.arstechnica.com/arstechnica/tech-policy",
+        }
+    },
+    "9to5Mac": {
+        "name": "9to5Mac",
+        "base_url": "https://9to5mac.com",
+        "specialization": "Dedicated Apple and Mac news",
+        "categories": {
+            "apple": "https://9to5mac.com/feed/",
+        }
     }
 }
 
@@ -74,7 +92,8 @@ CATEGORY_MAPPINGS = {
     "Spain": ["spain", "europe"],  # Will filter for Spain mentions
     "Germany": ["germany", "europe"],  # Will filter for Germany mentions
     "Japan": ["japan", "international"],  # Will filter for Japan mentions
-    "Technology": ["technology", "tech"],
+    "Technology": ["technology", "tech", "tech-policy"],
+    "Apple & Productivity AI": ["apple", "ai"],
     "Soccer": ["soccer", "football"],
     "US Sports": ["sports"],  # Will filter for US Football, Basketball, Baseball
     "Expat/Immigration": ["europe", "international"]  # Will filter for expat content
