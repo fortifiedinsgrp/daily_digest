@@ -19,10 +19,11 @@ class Settings:
     
     # CORS - simple string parsing
     cors_origins = os.getenv("BACKEND_CORS_ORIGINS", '["*"]')
-    if cors_origins.startswith('[') and cors_origins.endswith(']'):
-        # Remove brackets and quotes, split by comma
-        BACKEND_CORS_ORIGINS = [origin.strip().strip('"') for origin in cors_origins[1:-1].split(',')]
-    else:
+    try:
+        import json
+        BACKEND_CORS_ORIGINS = json.loads(cors_origins)
+    except:
+        # Fallback to allow all if parsing fails
         BACKEND_CORS_ORIGINS = ["*"]
     
     # Redis
