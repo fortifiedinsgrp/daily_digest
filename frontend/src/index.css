@@ -7,15 +7,41 @@
     @apply bg-gray-50 text-gray-900 antialiased;
   }
   
-  h1 {
-    @apply text-3xl font-bold;
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@layer components {
+  .nav-link {
+    @apply px-4 py-2 rounded-lg font-medium transition-all duration-200 hover:bg-gray-100;
   }
   
-  h2 {
-    @apply text-2xl font-semibold;
+  .nav-link.active {
+    @apply bg-blue-50 text-blue-600;
   }
   
-  h3 {
-    @apply text-xl font-semibold;
+  .article-card {
+    @apply bg-white rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden;
+  }
+  
+  .category-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wider;
+  }
+  
+  .source-badge {
+    @apply inline-flex items-center px-2 py-1 rounded-md text-xs font-medium bg-gray-100 text-gray-700;
+  }
+  
+  .btn-primary {
+    @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-200 shadow-sm hover:shadow-md;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-gray-700 px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition-colors duration-200 border border-gray-300;
+  }
+  
+  .skeleton {
+    @apply animate-pulse bg-gray-200 rounded;
   }
 }
