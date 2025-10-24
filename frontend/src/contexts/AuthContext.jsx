@@ -24,9 +24,15 @@ export const AuthProvider = ({ children }) => {
     const token = localStorage.getItem('token');
     if (token) {
       try {
+        // Add timeout to prevent hanging
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+        
         const response = await authAPI.getMe();
+        clearTimeout(timeoutId);
         setUser(response.data);
       } catch (error) {
+        console.error('Auth check failed:', error);
         localStorage.removeItem('token');
       }
     }
