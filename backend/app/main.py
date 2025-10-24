@@ -6,6 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
 from app.db.database import engine
 from app.models.models import Base
+from app.api.endpoints import auth
 
 # Create database tables (with error handling)
 try:
@@ -24,11 +25,14 @@ app = FastAPI(
 # Configure CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Will use settings.BACKEND_CORS_ORIGINS in production
+    allow_origins=settings.BACKEND_CORS_ORIGINS,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include routers
+app.include_router(auth.router, prefix=settings.API_V1_STR)
 
 @app.get("/")
 def root():
