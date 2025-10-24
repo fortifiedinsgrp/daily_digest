@@ -1,8 +1,8 @@
 import React from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
-function Layout({ children }) {
+function Layout() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -65,7 +65,7 @@ function Layout({ children }) {
       
       {/* Main Content */}
       <main className="flex-grow">
-        {children}
+        <Outlet />
       </main>
       
       {/* Footer */}
