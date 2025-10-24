@@ -13,11 +13,16 @@ const Home = () => {
   const fetchTodaysDigest = async () => {
     try {
       setLoading(true);
+      setError(null);
       const response = await digestsAPI.getLatestDigest('morning');
       setDigest(response.data);
     } catch (error) {
       console.error('Error fetching digest:', error);
-      setError('Failed to load today\'s digest');
+      if (error.response && error.response.status === 404) {
+        setError("Your first digest is being created! Please refresh in a minute.");
+      } else {
+        setError('Failed to load today\'s digest. Please try refreshing.');
+      }
     } finally {
       setLoading(false);
     }
@@ -26,11 +31,18 @@ const Home = () => {
   const createNewDigest = async () => {
     try {
       setLoading(true);
+      setError(null);
       const currentHour = new Date().getHours();
       const edition = currentHour < 12 ? 'morning' : 'evening';
       
-      await digestsAPI.createDigest(edition);
-      await fetchTodaysDigest();
+      const response = await digestsAPI.createDigest(edition);
+      // Give the background task a moment to start
+      setTimeout(() => {
+        fetchTodaysDigest();
+      }, 5000); // 5-second delay before refetching
+      // Optionally, show the message from the backend
+      // alert(response.data.message);
+
     } catch (error) {
       console.error('Error creating digest:', error);
       setError('Failed to create new digest');
