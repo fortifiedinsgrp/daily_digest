@@ -27,7 +27,7 @@ class UserInDB(UserBase):
     created_at: datetime
     
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class User(UserInDB):
@@ -65,7 +65,7 @@ class Article(ArticleBase):
     metadata_json: Optional[Dict[str, Any]] = {}
     
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 # Digest schemas
@@ -84,7 +84,7 @@ class DigestSummary(DigestBase):
     article_count: Optional[int] = 0
     
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 class DigestWithArticles(DigestBase):
@@ -94,7 +94,7 @@ class DigestWithArticles(DigestBase):
     articles_by_category: Optional[Dict[str, List[Article]]] = {}
     
     class Config:
-        from_attributes = True
+        orm_mode = True
 
 
 # Saved article schemas
